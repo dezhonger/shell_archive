@@ -2,16 +2,16 @@
 
 script_name=$()
 if [ $# -eq 0 ]; then
-    echo "please input Aeolus dashboardId or sheetId after shell, like $(basename $0) 220173"
+    echo "please input dashboardId or sheetId after shell, like $(basename $0)"
     exit 1
 fi
 
 
 # 设置起始目录和目标文件夹路径
-source_dir="/mnt/c/wlz/project/aeolus-data-migration/tts-insights"
-destination_dir="/mnt/c/wlz/project/go_script/sheet/query_transform/input/ttsinsight"
-execution_dir="/mnt/c/wlz/project/go_script/sheet/query_transform"
-output_dir="/mnt/c/wlz/project/go_script/sheet/query_transform/output/finalRequest"
+source_dir=""
+destination_dir=""
+execution_dir=""
+output_dir=""
 TEMP_FILE=$(mktemp)
 KEYWORD="CaptureDashBoardName "
 
@@ -19,7 +19,7 @@ KEYWORD="CaptureDashBoardName "
 # mkdir -p "$destination_dir"
 
 # 获取用户的输入
-# echo "Enter the Aeolus dashboardId or sheetId:"
+# echo "Enter the dashboardId or sheetId:"
 # read search_string
 search_string=$1
 echo ${search_string}
