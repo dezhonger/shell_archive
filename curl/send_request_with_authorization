@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# 定义单个Header值从文件读取的路径
+auth_file="authorization.txt"
+# 其他的固定Headers，数据文件路径和URL
+url="http://example.com/api"
+fixed_header1="Content-Type: application/json"
+fixed_header2="Custom-Header: custom_value"
+data_file="data.json"
+
+# 检查是否存在文件，并读取Authorization值
+if [ ! -f "$auth_file" ]; then
+    echo "文件 $auth_file 不存在!"
+    exit 1
+fi
+
+# 读取Authorization值
+auth_value=$(cat "$auth_file")
+
+# 如果需要去掉换行符
+auth_value=$(echo "$auth_value" | tr -d '\r' | tr -d '\n')
+
+# 发送curl请求并包括混合Header
+curl -s -i -X POST \
+    -H "$fixed_header1" \
+    -H "$fixed_header2" \
+    -H "Authorization: $auth_value" \
+    -d @$data_file \
+    "$url"
+
+#假设authorization.txt文件中包含一个Authorization Header的值
+# Bearer your_token_here
