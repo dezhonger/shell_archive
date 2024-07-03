@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cookie_header='cookie: locale=zh-cn; kura_cloud_uid=3a00dbde7450a57eb03b46abe7eea70a'
+
+response=$(curl -s "$url" \
+  -H 'accept: application/json, text/plain, */*' \
+  -H "$cookie_header" \
+  -H 'referer: https://dataleap-va.tiktok-row.net/dorado/development/node/103746644?project=i18n_175&fromPage=aeolus' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
+
+echo "response is '$response' "
