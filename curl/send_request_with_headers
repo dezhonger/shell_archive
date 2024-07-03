@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# 定义Headers文件路径
+headers_file="headers.txt"
+# 定义数据文件路径
+data_file="data.json"
+# 定义URL
+url="http://example.com/api"
+
+# 初始化一个空的curl header参数字符串
+header_params=""
+
+# 读取Headers文件，并构建curl header参数字符串
+while IFS= read -r header; do
+    header_params+="-H \"$header\" "
+done < "$headers_file"
+
+# 发送curl请求并包括读取的Headers
+eval "curl -s -i -X POST $header_params -d @$data_file \"$url\""
+
+#假设 headers.txt 文件中的内容如下：
+#Content-Type: application/json
+#Authorization: Bearer your_token_here
+#Custom-Header: custom_value
